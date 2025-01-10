@@ -21,7 +21,7 @@ const Navbar = () => {
           to={"/"}
           className={({ isActive }) =>
             `${
-              isActive ? "border-b-2 text-green-600 border-green-600" : ""
+              isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
             } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
@@ -34,7 +34,7 @@ const Navbar = () => {
           to={"/about"}
           className={({ isActive }) =>
             `${
-              isActive ? "border-b-2 text-green-600 border-green-600" : ""
+              isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
             } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
@@ -47,7 +47,7 @@ const Navbar = () => {
           to={"/product"}
           className={({ isActive }) =>
             `${
-              isActive ? "border-b-2 text-green-600 border-green-600" : ""
+              isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
             } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
@@ -60,7 +60,7 @@ const Navbar = () => {
           to={"/contact"}
           className={({ isActive }) =>
             `${
-              isActive ? "border-b-2 text-green-600 border-green-600" : ""
+              isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
             } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
@@ -72,7 +72,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div>
+      <div className="flex justify-between items-center">
         <div>Jewellery-Shop</div>
         <div>
           <ul>{links}</ul>
