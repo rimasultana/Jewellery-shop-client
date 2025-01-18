@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router";
-import MainLayout from "../layOut/mainLayout";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import PostJewellery from "../pages/PostJewellery";
+import MainLayout from "../layout/mainLayout";
+import Login from "../pages/Login";
+import Regester from "../pages/Regester";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
       {
         path:"/post",
         element:<PostJewellery/>
+      },
+      {
+        path:"/login",
+        element:<Login/>
+      },
+      {
+        path:"/regester",
+        element:<Regester/>
       }
     ],
   },
