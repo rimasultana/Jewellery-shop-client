@@ -3,7 +3,7 @@ import AuthContext from "../provider/AuthContext";
 import { Link } from "react-router";
 
 const Login = () => {
-  const { user, signInUser, logOut, googleSignIn } = useContext(AuthContext);
+  const { signInUser, googleSignIn } = useContext(AuthContext);
 
   const handleSignUser = (e) => {
     e.preventDefault();

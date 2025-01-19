@@ -5,6 +5,8 @@ import PostJewellery from "../pages/PostJewellery";
 import MainLayout from "../layout/mainLayout";
 import Login from "../pages/Login";
 import Regester from "../pages/Regester";
+import Prodict from "../pages/Prodict";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
       {
         path:"/regester",
         element:<Regester/>
+      },
+      {
+        path:"/product",
+        element:<Prodict/>
+      },
+      {
+        path:"/contact",
+        element:<Contact/>
       }
     ],
   },
