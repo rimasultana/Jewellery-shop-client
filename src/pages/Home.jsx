@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
+import JewelryGallery from "./img";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     axios
-      .delete(`http://localhost:5000/jewellery/${id}`)
+      .get(`http://localhost:5000/jewellery/${id}`)
       .then((res) => {
         console.log(res.data);
         if (res.data.deletedCount > 0) {
@@ -34,6 +35,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
+      <JewelryGallery/>
       <div className="min-h-screen bg-base-200 py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-12">

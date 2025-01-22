@@ -18,7 +18,7 @@ const HeroSection = () => {
           Discover the beauty of luxury with our handcrafted designer jewelry. <br />
           Perfect elegance for every occasion.
         </p>
-        <button className="px-6 py-3 bg-white text-black font-semibold rounded hover:bg-gray-200">
+        <button className="mybtn">
           Shop Now
         </button>
       </div>

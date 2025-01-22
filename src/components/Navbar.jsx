@@ -2,6 +2,9 @@ import { useState } from "react";
 import { NavLink } from "react-router"; 
 import { IoMenu } from "react-icons/io5";
 import { GiTireIronCross } from "react-icons/gi";
+import { AiOutlineHome, AiOutlineInfoCircle, AiOutlinePhone, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
+import { FaRegListAlt, FaPlusCircle } from "react-icons/fa";
+import { IoLogOut } from "react-icons/io5"; // Import the Log Out icon
 import useAuth from "../Hooks/useAuth";
 
 export const Navbar = () => {
@@ -16,9 +19,10 @@ export const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
-            } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+            } text-white font-medium px-2 py-2 rounded-md tracking-wide transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
+          <AiOutlineHome className="inline-block mr-2" />
           Home
         </NavLink>
       </li>
@@ -28,9 +32,10 @@ export const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive ? "border-b-2 text-pink-500 border-pink-500" : ""
-            } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+            } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
+          <AiOutlineInfoCircle className="inline-block mr-2" />
           About
         </NavLink>
       </li>
@@ -40,10 +45,24 @@ export const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
-            } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+            } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
+          <FaRegListAlt className="inline-block mr-2" />
           Product
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/addproduct"}
+          className={({ isActive }) =>
+            `${
+              isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
+            } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400`
+          }
+        >
+          <FaPlusCircle className="inline-block mr-2" />
+          Add product
         </NavLink>
       </li>
       <li>
@@ -52,9 +71,10 @@ export const Navbar = () => {
           className={({ isActive }) =>
             `${
               isActive ? "border-b-2 text-pink-700 border-pink-700" : ""
-            } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+            } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
+          <AiOutlinePhone className="inline-block mr-2" />
           Contact
         </NavLink>
       </li>
@@ -79,8 +99,9 @@ export const Navbar = () => {
             {user ? (
               <p
                 onClick={logOut} 
-                className="btn"
+                className="btn bg-pink-500 text-white flex items-center"
               >
+                <IoLogOut className="mr-2" />
                 Log Out
               </p>
             ) : (
@@ -93,9 +114,10 @@ export const Navbar = () => {
                         isActive
                           ? "border-b-2 text-pink-500 border-pink-500"
                           : ""
-                      } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+                      } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400 flex items-center`
                     }
                   >
+                    <AiOutlineLogin className="mr-2" />
                     Sign in
                   </NavLink>
                 </li>
@@ -107,9 +129,10 @@ export const Navbar = () => {
                         isActive
                           ? "border-b-2 text-pink-500 border-pink-500"
                           : ""
-                      } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+                      } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400 flex items-center`
                     }
                   >
+                    <AiOutlineUserAdd className="mr-2" />
                     Sign Up
                   </NavLink>
                 </li>
@@ -132,7 +155,7 @@ export const Navbar = () => {
                     <div>
                       <h2 className="inline-flex items-center">
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Jewellery Shop
+                          Je<span className="text-pink-500">weller</span>y Shop
                         </span>
                       </h2>
                     </div>

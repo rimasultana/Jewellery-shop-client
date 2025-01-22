@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Regester from "../pages/Regester";
 import Prodict from "../pages/Prodict";
 import Contact from "../pages/Contact";
+import AddProduct from "../pages/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:"/product",
         element:<Prodict/>
+      },
+      {
+        path:"/addproduct",
+        element:<AddProduct/>
       },
       {
         path:"/contact",
