@@ -3,7 +3,6 @@ const ContactForm = () => {
     <div className="container mx-auto p-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-8">
         {" "}
-        {/* Contact Form */}
         <div>
           <h2 className="text-2xl font-bold mb-6 text-center">Contact Form</h2>
           <form className="space-y-4">
@@ -41,7 +40,6 @@ const ContactForm = () => {
             </button>
           </form>
         </div>
-        {/* Contact Information */}
         <div>
           <h2 className="text-2xl font-bold mb-6">Contact Us</h2>
           <p className="mb-4">

@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import JewelryGallery from "./img";
+import FeaturedProduct from "./FeaturedProduct";
+import Partners from "./Partner";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -33,7 +35,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <Banner />
       <JewelryGallery/>
       <div className="min-h-screen bg-base-200 py-12 px-4">
@@ -82,7 +84,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </div>
+      <FeaturedProduct/>
+      <Partners/>
+    </>
   );
 };
 

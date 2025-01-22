@@ -11,7 +11,7 @@ const About = () => {
           alt="Banner Image"
           className="object-cover w-full h-72 sm:h-96 rounded-lg shadow-lg"
         />
-        <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div>
+        <div className="absolute rounded-lg"></div>
       </div>
 
       <div className="max-w-7xl mx-auto text-center">
