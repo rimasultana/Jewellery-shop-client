@@ -1,15 +1,16 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router"; 
 import { IoMenu } from "react-icons/io5";
 import { GiTireIronCross } from "react-icons/gi";
+import useAuth from "../Hooks/useAuth";
 
 export const Navbar = () => {
+  const { logOut, user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = (
     <>
       <li>
-        {" "}
         <NavLink
           to={"/"}
           className={({ isActive }) =>
@@ -19,10 +20,9 @@ export const Navbar = () => {
           }
         >
           Home
-        </NavLink>{" "}
+        </NavLink>
       </li>
       <li>
-        {" "}
         <NavLink
           to={"/about"}
           className={({ isActive }) =>
@@ -32,10 +32,9 @@ export const Navbar = () => {
           }
         >
           About
-        </NavLink>{" "}
+        </NavLink>
       </li>
       <li>
-        {" "}
         <NavLink
           to={"/product"}
           className={({ isActive }) =>
@@ -45,10 +44,9 @@ export const Navbar = () => {
           }
         >
           Product
-        </NavLink>{" "}
+        </NavLink>
       </li>
       <li>
-        {" "}
         <NavLink
           to={"/contact"}
           className={({ isActive }) =>
@@ -57,8 +55,8 @@ export const Navbar = () => {
             } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
           }
         >
-          contact
-        </NavLink>{" "}
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -78,32 +76,45 @@ export const Navbar = () => {
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              {" "}
-              <NavLink
-                to={"/login"}
-                className={({ isActive }) =>
-                  `${
-                    isActive ? "border-b-2 text-pink-500 border-pink-500" : ""
-                  } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
-                }
+            {user ? (
+              <p
+                onClick={logOut} 
+                className="btn"
               >
-                Sign in
-              </NavLink>{" "}
-            </li>
-            <li>
-              {" "}
-              <NavLink
-                to={"/regester"}
-                className={({ isActive }) =>
-                  `${
-                    isActive ? "border-b-2 text-pink-500 border-pink-500" : ""
-                  } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
-                }
-              >
-                Sign Up
-              </NavLink>{" "}
-            </li>
+                Log Out
+              </p>
+            ) : (
+              <>
+                <li>
+                  <NavLink
+                    to={"/login"}
+                    className={({ isActive }) =>
+                      `${
+                        isActive
+                          ? "border-b-2 text-pink-500 border-pink-500"
+                          : ""
+                      } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+                    }
+                  >
+                    Sign in
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to={"/register"} 
+                    className={({ isActive }) =>
+                      `${
+                        isActive
+                          ? "border-b-2 text-pink-500 border-pink-500"
+                          : ""
+                      } font-medium px-2 py-2 rounded-md tracking-wide text-gray-700 transition-colors duration-1000 hover:text-deep-purple-accent-400`
+                    }
+                  >
+                    Sign Up
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
           <div className="lg:hidden">
             <button

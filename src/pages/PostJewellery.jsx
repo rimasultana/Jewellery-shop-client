@@ -28,44 +28,44 @@ const PostJewellery = () => {
   };
   return (
     <>
-      <div classNameName="card bg-base-100 w-11/12 mx-auto max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handlePost} classNameName="card-body">
-          <h1 classNameName="">Post Data</h1>
-          <div classNameName="form-control">
-            <label classNameName="label">
-              <span classNameName="label-text">URL</span>
+      <div classNameNameName="card bg-base-100 w-11/12 mx-auto max-w-sm shrink-0 shadow-2xl">
+        <form onSubmit={handlePost} classNameNameName="card-body">
+          <h1 classNameNameName="">Post Data</h1>
+          <div classNameNameName="form-control">
+            <label classNameNameName="label">
+              <span classNameNameName="label-text">URL</span>
             </label>
             <input
               type="photo"
               name="photo"
               placeholder="email"
-              classNameName="input input-bordered"
+              classNameNameName="input input-bordered"
             />
           </div>
-          <div classNameName="form-control">
-            <label classNameName="label">
-              <span classNameName="label-text">name</span>
+          <div classNameNameName="form-control">
+            <label classNameNameName="label">
+              <span classNameNameName="label-text">name</span>
             </label>
             <input
               type="text"
               name="name"
               placeholder="name"
-              classNameName="input input-bordered"
+              classNameNameName="input input-bordered"
             />
           </div>
-          <div classNameName="form-control">
-            <label classNameName="label">
-              <span classNameName="label-text">description</span>
+          <div classNameNameName="form-control">
+            <label classNameNameName="label">
+              <span classNameNameName="label-text">description</span>
             </label>
             <input
               type="text"
               name="description"
               placeholder="description"
-              classNameName="input input-bordered"
+              classNameNameName="input input-bordered"
             />
           </div>
-          <div classNameName="form-control mt-6">
-            <button classNameName="btn btn-primary">Submit</button>
+          <div classNameNameName="form-control mt-6">
+            <button classNameNameName="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>

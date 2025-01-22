@@ -5,8 +5,8 @@ import { Navbar } from "../components/Navbar";
 const MainLayout = () => {
   return (
     <>
-     <Navbar/>
-      <div className="min-h-screen">
+      <Navbar />
+      <div classNameName="min-h-screen">
         <Outlet />
       </div>
       <Footer />
