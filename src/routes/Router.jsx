@@ -5,11 +5,11 @@ import PostJewellery from "../pages/PostJewellery";
 import MainLayout from "../layout/mainLayout";
 import Login from "../pages/Login";
 import Regester from "../pages/Regester";
-import Contact from "../pages/Contact";
 import AddProduct from "../pages/AddProduct";
 import Product from "../pages/Product";
 import ViewDetails from "../pages/ViewDetails";
 import Update from "../pages/Update";
+import ContactPage from "../pages/ContactPage";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/contact",
-        element:<Contact/>
+        element:<ContactPage/>
       },
       {
         path:"/viewdetails/:id",

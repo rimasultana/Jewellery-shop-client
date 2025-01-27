@@ -1,75 +1,67 @@
-const PostJewellery = () => {
-  const handlePost = (e) => {
-    e.preventDefault();
-    const from = new FormData(e.target);
-    const photo = from.get("photo");
-    const name = from.get("name");
-    const description = from.get("description");
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
-    const postData = {
-      photo,
-      name,
-      description,
-    };
-    fetch("http://localhost:5001/jewellery", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
-          alert("Post done!");
+const PostJewellery = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    axios
+      .post("http://localhost:5000/jewellery", data)
+      .then((res) => {
+        console.log(res);
+        if (res.data.insertedId) {
+          toast.success("Post data successfully!");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((err) => {
+        console.error(err);
+        toast.error("Error posting data!");
+      });
   };
+
   return (
-    <>
-      <div classNameNameName="card bg-base-100 w-11/12 mx-auto max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handlePost} classNameNameName="card-body">
-          <h1 classNameNameName="">Post Data</h1>
-          <div classNameNameName="form-control">
-            <label classNameNameName="label">
-              <span classNameNameName="label-text">URL</span>
-            </label>
-            <input
-              type="photo"
-              name="photo"
-              placeholder="email"
-              classNameNameName="input input-bordered"
-            />
-          </div>
-          <div classNameNameName="form-control">
-            <label classNameNameName="label">
-              <span classNameNameName="label-text">name</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="name"
-              classNameNameName="input input-bordered"
-            />
-          </div>
-          <div classNameNameName="form-control">
-            <label classNameNameName="label">
-              <span classNameNameName="label-text">description</span>
-            </label>
-            <input
-              type="text"
-              name="description"
-              placeholder="description"
-              classNameNameName="input input-bordered"
-            />
-          </div>
-          <div classNameNameName="form-control mt-6">
-            <button classNameNameName="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </>
+    <div className="card bg-base-100 w-11/12 mx-auto max-w-sm shrink-0 shadow-2xl">
+      <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+        <h1 className="text-xl">Post Data</h1>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">URL</span>
+          </label>
+          <input
+            {...register("photo")}
+            type="text"
+            placeholder="Photo URL"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input
+            {...register("name")}
+            type="text"
+            placeholder="Jewelry Name"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Description</span>
+          </label>
+          <input
+            {...register("description")}
+            type="text"
+            placeholder="Description"
+            className="input input-bordered"
+          />
+        </div>
+        <div className="form-control mt-6">
+          <button className="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
