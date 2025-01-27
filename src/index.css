@@ -6,6 +6,9 @@
 body {
   font-family: "Inter", serif;
 }
-.mybtn{
-  @apply px-10 py-5 rounded-md bg-pink-500 font-bold text-white
+.mybtn {
+  @apply px-10 py-5 rounded-md bg-pink-500 font-bold text-white;
+}
+html {
+  scroll-behavior: smooth;
 }

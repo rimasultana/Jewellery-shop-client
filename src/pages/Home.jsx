@@ -2,10 +2,10 @@ import Banner from "./Banner";
 
 import { useEffect, useState } from "react";
 import JewelryGallery from "./img";
-import FeaturedProduct from "./FeaturedProduct";
-import Partners from "./Partner";
 import axios from "axios";
 import { Link } from "react-router";
+import Features from "./FeaturedProduct";
+import JewelryHeroSection from "./JewellerySection";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -21,6 +21,7 @@ const Home = () => {
     <>
       <Banner />
       <JewelryGallery />
+
       <div className="min-h-screen bg-base-200 py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-12">
@@ -64,8 +65,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <FeaturedProduct />
-      <Partners />
+      <JewelryHeroSection />
+      <Features />
     </>
   );
 };

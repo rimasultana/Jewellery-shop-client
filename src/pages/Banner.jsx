@@ -3,6 +3,7 @@ import img from "../assets/pic1.jpg";
 const HeroSection = () => {
   return (
     <section
+    id="Banner"
       className="flex items-center justify-center px-6 md:px-12 h-screen "
       style={{
         backgroundImage: `url(${img})`,
