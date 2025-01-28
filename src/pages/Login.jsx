@@ -1,32 +1,35 @@
 import { useContext } from "react";
 import AuthContext from "../provider/AuthContext";
 import { Link } from "react-router";
+import { Player } from "@lottiefiles/react-lottie-player";
+import animation from "../assets/animation/register.json"
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const { signInUser, googleSignIn } = useContext(AuthContext);
 
-  const handleSignUser = (e) => {
-    e.preventDefault();
-    const from = new FormData(e.target);
-    const email = from.get("email");
-    const password = from.get("password");
+  const { register, handleSubmit, reset } = useForm();
 
-    console.log(email, password);
-    signInUser(email, password)
-      .then((result) => {
-        console.log(result);
+  const onSubmit = (data) => {
+    signInUser(data.email, data.password)
+      .then(() => {
+        toast.success("User created successfully.");
+        reset();
       })
       .catch((error) => {
-        console.log(error, "error");
+        console.log(error);
+        toast.error("Registration failed. Please try again.");
       });
   };
   const handleGoogleUser = () => {
     googleSignIn()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        toast.success("Login Successfully!")
+        reset()
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("failed Login.Try again!", error)
       });
   };
 
@@ -35,19 +38,23 @@ const Login = () => {
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6"></p>
+            <Player
+              autoplay
+              loop
+              src={animation}
+              style={{ height: "700px", width: "500px" }}
+            />
           </div>
           <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-            <form onSubmit={handleSignUser} className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h1 className="text-5xl font-bold">Login now!</h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                {...register("email")}
                   type="email"
-                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -58,8 +65,8 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
+                {...register("password")}
                   type="password"
-                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router";
 import Features from "./FeaturedProduct";
 import JewelryHeroSection from "./JewellerySection";
+import Partner from "./Partner";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -67,6 +68,7 @@ const Home = () => {
       </div>
       <JewelryHeroSection />
       <Features />
+      <Partner/>
     </>
   );
 };

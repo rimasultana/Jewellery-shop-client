@@ -1,36 +1,40 @@
 import { useContext } from "react";
 import AuthContext from "../provider/AuthContext";
-import { Link } from "react-router"; // Corrected import
+import { Link } from "react-router";
+import animation from "../assets/animation/login.json";
+import { Player } from "@lottiefiles/react-lottie-player";
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { googleSignIn, createUser } = useContext(AuthContext);
 
-  const handleRegister = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-    const form = new FormData(e.target);
-    const name = form.get("name");
-    const email = form.get("email");
-    const photo = form.get("photo");
-    const password = form.get("password");
-    console.log(name, password, email, photo);
-
-    createUser(email, password)
-      .then((result) => {
-        console.log(result);
+  const onSubmit = (data) => {
+    createUser(data.email, data.password)
+      .then(() => {
+        toast.success("User created successfully.");
+        reset();
       })
       .catch((error) => {
-        console.log(error, "error");
+        console.log(error);
+        toast.error("Registration failed. Please try again.");
       });
   };
 
   const handleGoogle = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result);
+        toast.success("Google sign-in successful!", result);
       })
       .catch((error) => {
-        console.log("error", error);
+        toast.error("Google sign-in error:", error);
       });
   };
 
@@ -38,64 +42,101 @@ const Register = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+          <Player
+            autoplay
+            loop
+            src={animation}
+            style={{ height: "700px", width: "500px" }}
+          />
         </div>
         <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
-          <form onSubmit={handleRegister} className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <h1 className="text-5xl font-bold">Register now!</h1>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
               <input
+                {...register("name", { required: "Name is required" })}
                 type="text"
-                name="name"
-                placeholder="name"
+                placeholder="Enter your name"
+                aria-label="Name"
                 className="input input-bordered"
-                required
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name.message}</p>
+              )}
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+                    message: "Invalid email address",
+                  },
+                })}
                 type="email"
-                name="email"
-                placeholder="email"
+                placeholder="Enter your email"
+                aria-label="Email"
                 className="input input-bordered"
-                required
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Photo URL</span>
               </label>
               <input
+                {...register("photoURL", { required: "Photo URL is required" })}
                 type="text"
-                name="photo"
-                placeholder="photo URL"
+                placeholder="Photo URL"
+                aria-label="Photo URL"
                 className="input input-bordered"
-                required
               />
+              {errors.photoURL && (
+                <p className="text-red-500 text-sm">{errors.photoURL.message}</p>
+              )}
             </div>
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
               <input
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters long",
+                  },
+                })}
                 type="password"
-                name="password"
-                placeholder="password"
+                placeholder="Enter your password"
+                aria-label="Password"
                 className="input input-bordered"
-                required
               />
+              {errors.password && (
+                <p className="text-red-500 text-sm">{errors.password.message}</p>
+              )}
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
+                <a
+                  href="/forgot-password"
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
                 </a>
               </label>
             </div>
+
             <div className="form-control">
               <button className="btn bg-pink-500 text-white font-bold">
                 Register
@@ -104,11 +145,15 @@ const Register = () => {
 
             <div className="divider">Or</div>
 
-            <button onClick={handleGoogle} className="btn bg-pink-100">
+            <button
+              onClick={handleGoogle}
+              className="btn bg-pink-500 text-white font-bold"
+            >
               Google
             </button>
+
             <p className="text-center">
-              Don’t have an account?{" "}
+              Already have an account?{" "}
               <Link to="/login" className="text-red-600">
                 Log in
               </Link>
