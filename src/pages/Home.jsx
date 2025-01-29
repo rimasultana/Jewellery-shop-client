@@ -1,5 +1,4 @@
 import Banner from "./Banner";
-
 import { useEffect, useState } from "react";
 import JewelryGallery from "./img";
 import axios from "axios";
@@ -23,7 +22,7 @@ const Home = () => {
       <Banner />
       <JewelryGallery />
 
-      <div className="min-h-screen bg-base-200 py-12 px-4">
+      <div className="min-h-screen bg-base-200 py-12 px-4 ">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center mb-12">
             Jewellery Collection
@@ -42,33 +41,35 @@ const Home = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title">{item.title}</h2>
+                  <h2 className="card-title ">{item.title}</h2>
                   <div className="flex justify-between items-center mt-4">
                     <p className="text-xl font-semibold text-primary">
                       ${item.price}
                     </p>
-                    <Link
-                      to={`/viewdetails/${item._id}`}
-                      className="btn btn-error btn-sm"
-                    >
-                      View Details
-                    </Link>
                   </div>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Added by: {item.name}
-                    </p>
-                    <p className="text-sm text-gray-500">{item.email}</p>
+                    <p className="text-sm text-gray-500">{item.description}</p>
                   </div>
+                  <Link
+                    to={`/viewdetails/${item._id}`}
+                    className="btn bg-teal-800 text-white btn-sm"
+                  >
+                    View Details
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
+        <Link to={"/product"}>
+          <div className="flex justify-center items-center py-10">
+            <button className="btn bg-pink-500 text-white">View More </button>
+          </div>
+        </Link>
       </div>
       <JewelryHeroSection />
       <Features />
-      <Partner/>
+      <Partner />
     </>
   );
 };

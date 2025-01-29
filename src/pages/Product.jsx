@@ -1,105 +1,66 @@
-import { useForm } from "react-hook-form";
-import useAuth from "../Hooks/useAuth";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 const Product = () => {
-  const { user } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [data, setData] = useState([]);
 
-  const onSubmit = (data) => {
-    data.email = user?.email;
-    data.photo = user?.photoURL;
-    data.name = user?.displayName;
-
+  useEffect(() => {
     axios
-      .post("http://localhost:5000/jewellery", data)
-      .then((res) => {
-        console.log(res.data);
-        toast.success("Product added successfully!");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong, please try again.", error);
-      });
-  };
+      .get("http://localhost:5000/jewellery")
+      .then((res) => setData(res.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
-    <div className="min-h-screen bg-base-200 py-12 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">Add New Product</h1>
-        <div className="card bg-base-100 shadow-2xl">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Product Title</span>
-                </label>
-                <input
-                  type="text"
-                  {...register("title", { required: true })}
-                  placeholder="Enter product title"
-                  className="input input-bordered focus:input-primary"
-                />
-                {errors.title && (
-                  <span className="text-red-500">Title is required</span>
-                )}
+    <>
+      <div className="min-h-screen bg-base-200 py-12 px-4 ">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-4xl font-bold text-center mb-12 text-pink-500">
+            Jewellery Collection
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {data.map((item) => (
+              <div
+                key={item._id}
+                className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+              >
+                <figure className="px-4 pt-4">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="rounded-xl h-64 w-full object-cover"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title ">{item.title}</h2>
+                  <div className="flex justify-between items-center mt-4">
+                    <p className="text-xl font-semibold text-primary">
+                      ${item.price}
+                    </p>
+                  </div>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                       {item.description}
+                    </p>
+
+                    <p className="text-sm text-gray-500">
+                      Added by: {item.name}
+                    </p>
+                  </div>
+                  <Link
+                    to={`/viewdetails/${item._id}`}
+                    className="btn bg-teal-800 text-white btn-sm"
+                  >
+                    View Details
+                  </Link>
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Price</span>
-                </label>
-                <input
-                  type="number"
-                  placeholder="Enter price"
-                  className="input input-bordered focus:input-primary"
-                  min="0"
-                  step="0.01"
-                  {...register("price", { required: true })}
-                />
-                {errors.price && (
-                  <span className="text-red-500">Price is required</span>
-                )}
-              </div>
-              <div className="form-control md:col-span-2">
-                <label className="label">
-                  <span className="label-text font-medium">Description</span>
-                </label>
-                <textarea
-                  placeholder="Enter product description"
-                  className="textarea textarea-bordered focus:textarea-primary h-32"
-                  {...register("description", { required: true })}
-                />
-                {errors.description && (
-                  <span className="text-red-500">Description is required</span>
-                )}
-              </div>
-              <div className="form-control md:col-span-2">
-                <label className="label">
-                  <span className="label-text font-medium">Product Image</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="photo"
-                  {...register("photo", { required: true })}
-                  className="input input-bordered focus:input-primary"
-                />
-                {errors.photo && (
-                  <span className="text-red-500">Photo is required</span>
-                )}
-              </div>
-            </div>
-            <div className="form-control mt-8">
-              <button className="btn btn-primary">Add Product</button>
-            </div>
-          </form>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
-
 export default Product;

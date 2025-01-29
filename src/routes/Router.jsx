@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/viewdetails/:id",
-        element:<ViewDetails/>
+        element:<ViewDetails/>,
       },
       {
         path:"/update/:id",
