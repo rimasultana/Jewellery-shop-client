@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/jewellery")
-      .then((res) => setData(res.data))
+      .then((res) => setData(res.data.slice(0, 6)))
       .catch((error) => console.log(error));
   }, []);
 

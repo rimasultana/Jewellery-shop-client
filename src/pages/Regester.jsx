@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../provider/AuthContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import animation from "../assets/animation/login.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import toast from "react-hot-toast";
@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { googleSignIn, createUser } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const {
     register,
@@ -21,6 +22,7 @@ const Register = () => {
       .then(() => {
         toast.success("User created successfully.");
         reset();
+        navigate("/")
       })
       .catch((error) => {
         console.log(error);
@@ -32,6 +34,7 @@ const Register = () => {
     googleSignIn()
       .then((result) => {
         toast.success("Google sign-in successful!", result);
+        navigate("/")
       })
       .catch((error) => {
         toast.error("Google sign-in error:", error);

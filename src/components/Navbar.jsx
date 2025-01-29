@@ -88,7 +88,7 @@ export const Navbar = () => {
           <div className="flex items-center">
             <h1 title="Company" className="inline-flex items-center mr-8">
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                Jewellery Shop
+                Jewe<span className="text-pink-500">ll</span>ery <span className="text-pink-500">S</span>hop
               </span>
             </h1>
             <ul className="flex items-center hidden space-x-8 lg:flex">

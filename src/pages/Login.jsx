@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../provider/AuthContext";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Player } from "@lottiefiles/react-lottie-player";
 import animation from "../assets/animation/register.json"
 import toast from "react-hot-toast";
@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 const Login = () => {
   const { signInUser, googleSignIn } = useContext(AuthContext);
 
+  const navigate = useNavigate()
+
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
@@ -16,6 +18,7 @@ const Login = () => {
       .then(() => {
         toast.success("User created successfully.");
         reset();
+        navigate("/")
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +29,7 @@ const Login = () => {
     googleSignIn()
       .then(() => {
         toast.success("Login Successfully!")
-        reset()
+        navigate("/")
       })
       .catch((error) => {
         toast.error("failed Login.Try again!", error)

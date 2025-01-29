@@ -10,6 +10,7 @@ import Product from "../pages/Product";
 import ViewDetails from "../pages/ViewDetails";
 import Update from "../pages/Update";
 import ContactPage from "../pages/ContactPage";
+import PrivatRoute from "./PrivatRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,37 +27,45 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path:"/post",
-        element:<PostJewellery/>
+        path: "/post",
+        element: <PostJewellery />,
       },
       {
-        path:"/login",
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:"/register",
-        element:<Regester/>
+        path: "/register",
+        element: <Regester />,
       },
       {
-        path:"/product",
-        element:<Product/>
+        path: "/product",
+        element: <Product />,
       },
       {
-        path:"/addproduct",
-        element:<AddProduct/>
+        path: "/addproduct",
+        element: (
+          <PrivatRoute>
+            <AddProduct />
+          </PrivatRoute>
+        ),
       },
       {
-        path:"/contact",
-        element:<ContactPage/>
+        path: "/contact",
+        element: <ContactPage />,
       },
       {
-        path:"/viewdetails/:id",
-        element:<ViewDetails/>,
+        path: "/viewdetails/:id",
+        element: (
+          <PrivatRoute>
+            <ViewDetails />
+          </PrivatRoute>
+        ),
       },
       {
-        path:"/update/:id",
-        element:<Update/>
-      }
+        path: "/update/:id",
+        element: <Update />,
+      },
     ],
   },
 ]);
