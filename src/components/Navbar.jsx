@@ -1,10 +1,15 @@
 import { useState } from "react";
-import { NavLink } from "react-router"; 
+import { NavLink } from "react-router";
 import { IoMenu } from "react-icons/io5";
 import { GiTireIronCross } from "react-icons/gi";
-import { AiOutlineHome, AiOutlineInfoCircle, AiOutlinePhone, AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
+import {
+  AiOutlineHome,
+  AiOutlineInfoCircle,
+  AiOutlinePhone,
+  AiOutlineLogin,
+} from "react-icons/ai";
 import { FaRegListAlt, FaPlusCircle } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5"; // Import the Log Out icon
+import { IoLogOut } from "react-icons/io5";
 import useAuth from "../Hooks/useAuth";
 
 export const Navbar = () => {
@@ -85,60 +90,45 @@ export const Navbar = () => {
     <div className="bg-gray-900 sticky top-0 z-10">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
-          <div className="flex items-center">
-            <h1 title="Company" className="inline-flex items-center mr-8">
+          <div className="flex items-center justify-start">
+            <h1 className="inline-flex items-center">
               <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                Jewe<span className="text-pink-500">ll</span>ery <span className="text-pink-500">S</span>hop
+                Jewe<span className="text-pink-500">ll</span>ery{" "}
+                <span className="text-pink-500">S</span>hop
               </span>
             </h1>
-            <ul className="flex items-center hidden space-x-8 lg:flex">
-              {links}
-            </ul>
           </div>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+
+          <ul className="flex items-center space-x-2 lg:flex hidden mx-auto">
+            {links}
+          </ul>
+
+          <ul className="flex items-center justify-center hidden lg:flex">
             {user ? (
               <p
-                onClick={logOut} 
+                onClick={logOut}
                 className="btn bg-pink-500 text-white flex items-center"
               >
                 <IoLogOut className="mr-2" />
                 Log Out
               </p>
             ) : (
-              <>
-                <li>
-                  <NavLink
-                    to={"/login"}
-                    className={({ isActive }) =>
-                      `${
-                        isActive
-                          ? "border-b-2 text-pink-500 border-pink-500"
-                          : ""
-                      } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400 flex items-center`
-                    }
-                  >
-                    <AiOutlineLogin className="mr-2" />
-                    Sign in
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to={"/register"} 
-                    className={({ isActive }) =>
-                      `${
-                        isActive
-                          ? "border-b-2 text-pink-500 border-pink-500"
-                          : ""
-                      } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400 flex items-center`
-                    }
-                  >
-                    <AiOutlineUserAdd className="mr-2" />
-                    Sign Up
-                  </NavLink>
-                </li>
-              </>
+              <li>
+                <NavLink
+                  to={"/login"}
+                  className={({ isActive }) =>
+                    `${
+                      isActive ? "border-b-2 text-pink-500 border-pink-500" : ""
+                    } font-medium px-2 py-2 rounded-md tracking-wide text-white transition-colors duration-1000 hover:text-deep-purple-accent-400 flex items-center`
+                  }
+                >
+                  <AiOutlineLogin className="mr-2" />
+                  Sign in
+                </NavLink>
+              </li>
             )}
           </ul>
+
           <div className="lg:hidden">
             <button
               aria-label="Open Menu"

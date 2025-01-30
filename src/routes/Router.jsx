@@ -11,12 +11,13 @@ import ViewDetails from "../pages/ViewDetails";
 import Update from "../pages/Update";
 import ContactPage from "../pages/ContactPage";
 import PrivatRoute from "./PrivatRoute";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <h1>404 Error</h1>,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
