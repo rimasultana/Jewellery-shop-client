@@ -24,6 +24,4 @@ Welcome to the **Jewelry Business Website**! This website showcases a collection
 
 To get the project up and running locally, follow these simple steps:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/jewelry-business.git
+
